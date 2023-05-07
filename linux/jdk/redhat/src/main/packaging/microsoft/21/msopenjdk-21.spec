@@ -1,8 +1,8 @@
-%global upstream_version 17.0.7+7
+%global upstream_version 21+20
 # Only [A-Za-z0-9.] allowed in version:
 # https://docs.fedoraproject.org/en-US/packaging-guidelines/Versioning/#_upstream_uses_invalid_characters_in_the_version
-%global spec_version 17.0.7.0.0.7
-%global spec_release 2
+%global spec_version 21.0.0.0.0.20
+%global spec_release 1
 %global priority 1161
 
 %global source_url_base https://aka.ms/download-jdk
@@ -43,10 +43,10 @@
 %endif
 %endif
 
-Name:        msopenjdk-17
+Name:        msopenjdk-21
 Version:     %{spec_version}
 Release:     %{spec_release}
-Summary:     Microsoft Build of OpenJDK 17
+Summary:     Microsoft Build of OpenJDK 21
 
 Group:       java
 License:     GPLv2 with Classpath Exception
@@ -80,18 +80,21 @@ Recommends: freetype%{?_isa}
 Recommends: libasound%{?_isa}
 
 Provides: java
-Provides: java-17
-Provides: java-17-devel
-Provides: java-17-%{java_provides}
-Provides: java-17-%{java_provides}-devel
+Provides: java-21
+Provides: java-21-devel
+Provides: java-21-%{java_provides}
+Provides: java-21-%{java_provides}-devel
 Provides: java-devel
+Provides: java-devel-%{java_provides}
 Provides: java-%{java_provides}
 Provides: java-%{java_provides}-devel
-Provides: java-sdk-17
-Provides: java-sdk-17-%{java_provides}
+Provides: java-sdk
+Provides: java-sdk-21
+Provides: java-sdk-21-%{java_provides}
+Provides: java-sdk-%{java_provides}
 Provides: jre
-Provides: jre-17
-Provides: jre-17-%{java_provides}
+Provides: jre-21
+Provides: jre-21-%{java_provides}
 Provides: jre-%{java_provides}
 
 # First architecture (x64)
@@ -188,6 +191,7 @@ if [ $1 -ge 1 ] ; then
                         --slave %{_bindir}/jstack jstack %{prefix}/bin/jstack \
                         --slave %{_bindir}/jstat jstat %{prefix}/bin/jstat \
                         --slave %{_bindir}/jstatd jstatd %{prefix}/bin/jstatd \
+                        --slave %{_bindir}/jwebserver jwebserver %{prefix}/bin/jwebserver \
                         --slave %{_bindir}/serialver serialver %{prefix}/bin/serialver \
                         --slave  %{_mandir}/man1/jar.1 jar.1 %{prefix}/man/man1/jar.1 \
                         --slave  %{_mandir}/man1/jarsigner.1 jarsigner.1 %{prefix}/man/man1/jarsigner.1 \
@@ -210,6 +214,7 @@ if [ $1 -ge 1 ] ; then
                         --slave  %{_mandir}/man1/jstack.1 jstack.1 %{prefix}/man/man1/jstack.1 \
                         --slave  %{_mandir}/man1/jstat.1 jstat.1 %{prefix}/man/man1/jstat.1 \
                         --slave  %{_mandir}/man1/jstatd.1 jstatd.1 %{prefix}/man/man1/jstatd.1 \
+                        --slave  %{_mandir}/man1/jwebserver.1 jwebserver.1 %{prefix}/man/man1/jwebserver.1 \
                         --slave  %{_mandir}/man1/serialver.1 serialver.1 %{prefix}/man/man1/serialver.1
 fi
 
@@ -225,7 +230,5 @@ fi
 /usr/lib/tmpfiles.d/%{name}.conf
 
 %changelog
-* Tue Apr 18 2023 Microsoft Package Maintainers <openjdk@microsoft.com> 17.0.7-1
-- Microsoft 17.0.7+7 initial release.
-* Fri Mar 10 2023 Microsoft Package Maintainers <openjdk@microsoft.com> 17.0.6-1
-- Microsoft 17.0.6+10 initial release.
+* Fri May 5 2023 Microsoft Package Maintainers <openjdk@microsoft.com> 21.0.0-20
+- Microsoft 21+20 EA release, (in preparation for official release of JDK21 only).
